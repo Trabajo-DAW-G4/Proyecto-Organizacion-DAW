@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Tienda de Ropa</title>
+    <link rel="stylesheet" href="../styles/contacto.css">
+</head>
+<body>
+
+    <header>
+        <h1>J3AC | Tienda de Ropa</h1>
+        <nav>
+            <a href="../index.html">Inicio</a> |
+            <a href="sobreNosotros.html">Sobre Nosotros</a>
+        </nav>
+    </header>
+
+    <h1>Contacto</h1>
+    <form action="/contacto" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required>
+
+        <label for="email">Dirección de email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefono">Número de teléfono:</label>
+        <input type="tel" id="telefono" name="telefono">
+
+        <label for="mensaje">Su mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <br>
+
+        <p>Al enviar este formulario, confirmo que he leído y acepto la <a href="privacyTerms.html">Política de Privacidad</a>.</p>
+
+        <br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
