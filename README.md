@@ -8,6 +8,8 @@
 - [sobreNosotros.html]
 - [contacto.html]
 - [productos.php]
+- [register.html]
+- [login.html]
 
 ## Subpáginas importantes
 
