@@ -7,6 +7,7 @@
 - [index.html]
 - [sobreNosotros.html]
 - [contacto.html]
+- [productos.php]
 
 ## Subpáginas importantes
 
@@ -26,11 +27,11 @@
 
 Nuestro equipo esta formado por los siguientes integrantes:
 
-1. [@jaimecamocha](https://github.com/jaimecamocha) [Jaime]
-2. [@javigarciagr7](https://github.com/Javigarciagr7) [Javier]
-3. [@trisml](https://github.com/trisml) [Tristan]
-4. [@Joasan11](https://github.com/Joasan11) [Joaquín]
-5. [@AlvaroDromant](https://github.com/AlvaroDromant) [Alvaro]
+1. [@jaimecamocha](https://github.com/jaimecamocha) [Jaime] [Estilos(Tailwind)]
+2. [@javigarciagr7](https://github.com/Javigarciagr7) [Javier] [JS(JavaScript)]
+3. [@trisml](https://github.com/trisml) [Tristan(HTML)]
+4. [@Joasan11](https://github.com/Joasan11) [Joaquín(Lider)]
+5. [@AlvaroDromant](https://github.com/AlvaroDromant) [Alvaro(PHP)]
 
 ## Problemas y Sugerencias
 
