@@ -1,0 +1,19 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "¡Bienvenido a Tarea.05!.",
+  "main": "index.js",
+  "scripts": {
+    "dev" : "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
+  }
+}
