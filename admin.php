@@ -37,7 +37,7 @@ function listProducts($conn){
         if(isset($_POST['delete'])){
             $id = $_POST['delete_id'];
             deleteProduct($conn, $id);
-            echo "<p>Producto eliminado correctamente.</p>";
+            echo "<p class='bg-red-500 hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded'>Producto eliminado correctamente.</p>";
         } else if(isset($_POST['edit'])){
             $id = $_POST['edit_id'];
             editProduct($conn, $id);
@@ -59,10 +59,10 @@ function listProducts($conn){
 
             if(!empty($category) && !empty($name) && !empty($talla) && !empty($stock) && !empty($precio)){
                 insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_foto);
-                $message = "Producto insertado correctamente.";
+                $message = "<p class='bg-red-500 hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded'>Producto insertado correctamente.</p>";
                 echo $message;
             }else{
-                $message = "Error al insertar el producto.";
+                $message = "<p class='bg-red-500 hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded'>Error al insertar el producto.</p>";
                 echo $message;
             }
         }
@@ -98,14 +98,14 @@ function listProducts($conn){
             $query->bindParam(":ruta_foto", $ruta_foto);
 
             if($query->execute()){
-                $message = "Producto actualizado.";
+                $message = "<p class='bg-red-500 hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded'>Producto actualizado.</p>";
                 echo $message;
             } else {
-                $message = "Error al actualizar.";
+                $message = "<p class='bg-red-500 hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded'>Error al actualizar.</p>";
                 echo $message;
             }
         } else {
-            $message = "Campos incompletos al actualizar el producto.";
+            $message = "<p class='bg-red-500 hover:bg-red-600  text-white text-center font-bold py-2 px-4 rounded'>Campos incompletos al actualizar el producto.</p>";
             echo $message;
         }
     }          
@@ -120,131 +120,92 @@ function listProducts($conn){
         $productToEdit = editProduct($conn, $id);
     }
     ?>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <form class="flex items-center justify-center m-4" method="post" action="logout.php">
+    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+        Cerrar Sesión
+    </button>
+</form>
 
-    <form method="post" action="logout.php">
-        <button type="submit">Cerrar Sesión</button>
-    </form>
 
-    <form method='post' enctype='multipart/form-data'>
-        <label for='category'>Categoría:</label>
-        <select name='category' id='category'>
-            <option value='Camiseta' <?= ($productToEdit && $productToEdit["categoria"] == 'Camiseta') ? 'selected' : '' ?>>Camiseta</option>
-            <option value='Sudadera' <?= ($productToEdit && $productToEdit["categoria"] == 'Sudadera') ? 'selected' : '' ?>>Sudadera</option>
-            <option value='Pantalon' <?= ($productToEdit && $productToEdit["categoria"] == 'Pantalon') ? 'selected' : '' ?>>Pantalón</option>
-        </select>
+<form method='post' class="flex flex-col items-center justify-center gap-6 bg-red-200 p-10 max-w-lg mx-auto rounded" enctype='multipart/form-data'>
 
-        <label for='name'>Nombre:</label>
-        <input type='text' name='name' id='name' value='<?= ($productToEdit ? $productToEdit["nombre"] : "") ?>'>
+<label for='category' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Categoría:</label>
+<select name='category' id='category' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
+    <option value='Camiseta' <?= ($productToEdit && $productToEdit["categoria"] == 'Camiseta') ? 'selected' : '' ?>>Camiseta</option>
+    <option value='Sudadera' <?= ($productToEdit && $productToEdit["categoria"] == 'Sudadera') ? 'selected' : '' ?>>Sudadera</option>
+    <option value='Pantalon' <?= ($productToEdit && $productToEdit["categoria"] == 'Pantalon') ? 'selected' : '' ?>>Pantalón</option>
+</select>
 
-        <label for='talla'>Talla:</label>
-        <select name='talla' id='talla'>
-            <option value='S' <?= ($productToEdit && $productToEdit["talla"] == 'S') ? 'selected' : '' ?>>S</option>
-            <option value='M' <?= ($productToEdit && $productToEdit["talla"] == 'M') ? 'selected' : '' ?>>M</option>
-            <option value='L' <?= ($productToEdit && $productToEdit["talla"] == 'L') ? 'selected' : '' ?>>L</option>
-            <option value='XL' <?= ($productToEdit && $productToEdit["talla"] == 'XL') ? 'selected' : '' ?>>XL</option>
-        </select>
+<label for='name' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Nombre:</label>
+<input type='text' name='name' id='name' value='<?= ($productToEdit ? $productToEdit["nombre"] : "") ?>' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
 
-        <label for='stock'>Stock:</label>
-        <input type='text' name='stock' id='stock' value='<?= ($productToEdit ? $productToEdit["stock"] : "") ?>'>
+<label for='talla' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Talla:</label>
+<select name='talla' id='talla' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
+    <option value='S' <?= ($productToEdit && $productToEdit["talla"] == 'S') ? 'selected' : '' ?>>S</option>
+    <option value='M' <?= ($productToEdit && $productToEdit["talla"] == 'M') ? 'selected' : '' ?>>M</option>
+    <option value='L' <?= ($productToEdit && $productToEdit["talla"] == 'L') ? 'selected' : '' ?>>L</option>
+    <option value='XL' <?= ($productToEdit && $productToEdit["talla"] == 'XL') ? 'selected' : '' ?>>XL</option>
+</select>
 
-        <label for='precio'>Precio:</label>
-        <input type='text' name='precio' id='precio' value='<?= ($productToEdit ? $productToEdit["precio"] : "") ?>'>
+<label for='stock' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Stock:</label>
+<input type='text' name='stock' id='stock' value='<?= ($productToEdit ? $productToEdit["stock"] : "") ?>' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
 
-        <label for='ruta_foto'>Ruta de la Foto:</label>
-        <input type='file' name='ruta_foto' id='ruta_foto'>
-        <?php if ($productToEdit && !empty($productToEdit['ruta_foto'])): ?>
-            <img src="<?= $productToEdit['ruta_foto'] ?>" alt="<?= $productToEdit['nombre'] ?>" width='50' height='50'>
-        <?php endif; ?>
+<label for='precio' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Precio:</label>
+<input type='text' name='precio' id='precio' value='<?= ($productToEdit ? $productToEdit["precio"] : "") ?>' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
 
-        <input type='hidden' name='product_id' value='<?= ($productToEdit ? $productToEdit['id'] : "") ?>'>
-        <button type='submit' name='<?= ($productToEdit ? "update" : "insert") ?>' id='insert-btn'><?= ($productToEdit ? "Editar" : "Insertar") ?> Producto</button>
-    </form>
+<label for='ruta_foto' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Ruta de la Foto:</label>
+<input type='file' name='ruta_foto' id='ruta_foto' class="border border-gray-300 rounded-md justify-center w-full bg-white focus:outline-none focus:border-red-500 p-9">
+<?php if ($productToEdit && !empty($productToEdit['ruta_foto'])): ?>
+    <img src="<?= $productToEdit['ruta_foto'] ?>" alt="<?= $productToEdit['nombre'] ?>" width='50' height='50'>
+<?php endif; ?>
 
-    <table border='1'>
+<input type='hidden' name='product_id' value='<?= ($productToEdit ? $productToEdit['id'] : "") ?>'>
+<button type='submit' name='<?= ($productToEdit ? "update" : "insert") ?>' id='insert-btn' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"><?= ($productToEdit ? "Editar" : "Insertar") ?> Producto</button>
+</form>
+
+
+<table border="1" class="w-[] mx-auto border-collapse table-auto m-7">
+    <thead class="bg-red-500 hover:bg-red-600 text-white">
         <tr>
-            <th>Categoría</th>
-            <th>Nombre</th>
-            <th>Talla</th>
-            <th>Stock</th>
-            <th>Precio</th>
-            <th>Foto</th>
-            <th>Acciones</th>
+            <th class="border p-4">Categoría</th>
+            <th class="border p-4">Nombre</th>
+            <th class="border p-4">Talla</th>
+            <th class="border p-4">Stock</th>
+            <th class="border p-4">Precio</th>
+            <th class="border p-4">Foto</th>
+            <th class="border p-4">Acciones</th>
         </tr>
-    <?php
-    foreach($query as $row){          
-        echo "<tr>";
-        echo "<td>" . $row["categoria"] . "</td>";
-        echo "<td>" . $row["nombre"] . "</td>";
-        echo "<td>" . $row["talla"] . "</td>";
-        echo "<td>" . $row["stock"] . "</td>";
-        echo "<td>" . $row["precio"] . "</td>";
-        echo "<td><img src='" . $row["ruta_foto"] . "' alt='" . $row["nombre"] . "' width='50' height='50'></td>";
-        echo "<td>
-                <form method='post'>
-                    <input type='hidden' name='delete_id' value='" . $row["id"] . "'>
-                    <input type='submit' name='delete' value='Eliminar'>
-                </form>
-                <form method='post'>
-                    <input type='hidden' name='edit_id' value='" . $row["id"] . "'>
-                    <input type='submit' name='edit' value='Editar' id='edit-btn'>
-                </form>
-              </td>";
-        echo "</tr>";           
-    }
+    </thead>
+    <tbody>
+        <?php
+        foreach($query as $row){
+            echo "<tr>";
+            echo "<td class='border p-2 text-center'>" . $row["categoria"] . "</td>";
+            echo "<td class='border p-2 text-center'>" . $row["nombre"] . "</td>";
+            echo "<td class='border p-2 text-center'>" . $row["talla"] . "</td>";
+            echo "<td class='border p-2 text-center'>" . $row["stock"] . "</td>";
+            echo "<td class='border p-2 text-center'>" . $row["precio"] . "</td>";
+            echo "<td class='border p-2 items-center'><img src='" . $row["ruta_foto"] . "' alt='" . $row["nombre"] . "' class='max-w-2 max-h-28'></td>";            echo "<td class='border p-2 text-center'>
+                    <form method='post'>
+                        <input type='hidden' name='delete_id' value='" . $row["id"] . "'>
+                        <input type='submit' name='delete' value='Eliminar' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded w-full'>
+                    </form>
+                    <form method='post'>
+                        <input type='hidden' name='edit_id' value='" . $row["id"] . "'>
+                        <input type='submit' name='edit' value='Editar' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded w-full' id='edit-btn'>
+                    </form>
+                  </td>";
+            echo "</tr>";
+        }
     echo "</table>";    
 }
 
-function getBestSellingProducts($conn){
-    $query = $conn->prepare("SELECT order_details FROM pedidos");
-    $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    $soldProducts = [];
-
-    foreach($results as $result){
-        $order_details = explode(",", $result['order_details']);
-
-        foreach($order_details as $product_id){
-            if(!isset($soldProducts[$product_id])){
-                $soldProducts[$product_id] = 0;
-            }
-            $soldProducts[$product_id]++;          
-        }
-    }
-
-    arsort($soldProducts);
-
-    $productNames = [];
-    foreach ($soldProducts as $product_id => $quantity) {
-        $query = $conn->prepare("SELECT nombre FROM productos_ropa WHERE id = :id");
-        $query->bindParam(":id", $product_id);
-        $query->execute();
-        $productName = $query->fetchColumn();
-
-        if ($productName) {
-            $productNames[$productName] = $quantity;
-        }
-    }
-    return $productNames;
-}
 
 $conn = connectDB();
-$bestSellingProducts = getBestSellingProducts($conn);
 
 listProducts($conn);
 
-echo "<h2>Productos Más Vendidos</h2>";
-echo "<table border='1'>
-        <tr>
-            <th>Nombre</th>
-            <th>Total Vendido</th>
-        </tr>";
 
-foreach ($bestSellingProducts as $productName => $quantity) {
-    echo "<tr>";
-    echo "<td>" . $productName . "</td>";
-    echo "<td>" . $quantity . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
 ?>

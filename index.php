@@ -51,6 +51,21 @@
     <title>Registro</title>
 </head>
 <body>
+    <header>
+    <nav class="bg-gray-800">
+    <ul class="flex">
+        <li class="mr-6">
+            <a href="#" class="text-white">Inicio</a>
+        </li>
+        <li class="mr-6">
+            <a href="#" class="text-white">Sobre nosotros</a>
+        </li>
+        <li>
+            <a href="#" class="text-white">Términos y privacidad</a>
+        </li>
+    </ul>
+</nav>
+    </header>
     <form method="post">
         <label for="username">Nombre de usuario:</label>
         <input type="text" name="username" id="username">
