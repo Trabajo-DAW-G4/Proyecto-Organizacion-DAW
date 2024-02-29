@@ -24,6 +24,9 @@ module.exports = {
         sans: ["Poppins", "sans-serif"],
         cascadia: ["Cascadia Code", "monospace"]
       },
+      imagen:{
+        fondo:['./assets/fondo.avif']
+      }
     },
   },
   plugins: [],
