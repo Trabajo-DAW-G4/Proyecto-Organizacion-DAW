@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $message = "Inicio de sesión exitoso";
                 echo $message;
-                header("Refresh: 3; url=./user.php");
+                header("Refresh: 3; url=./inicio.php");
             }
         }
 
