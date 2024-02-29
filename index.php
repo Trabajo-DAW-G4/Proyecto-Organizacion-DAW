@@ -1,54 +1,46 @@
 <?php 
-include("./connectDB.php");
+    include("./connectDB.php");
 
-session_start();
+    session_start();
 
-$message = null;
+    $message = null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $rol = null;
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $rol = null;
 
-    if ($username == "admin") {
-        $rol = 0;
-    } else {
-        $rol = 1;
-    }
-
-    // Usar 'name' en lugar de 'nombre'
-    $name = isset($_POST["nombre"]) ? $_POST["nombre"] : "";
-    
-    // Usar 'correo' en lugar de 'email'
-    $correo = isset($_POST["email"]) ? $_POST["email"] : "";
-
-    $conn = connectDB();
-
-    if ($conn) {
-        $query = "INSERT INTO usuarios (user, name, password, rol, correo) 
-                  VALUES (:username, :name, :password, :rol, :correo)";
-        $statement = $conn->prepare($query);
-
-        $statement->bindParam(":username", $username);
-        $statement->bindParam(":name", $name);
-        $statement->bindParam(":password", $password);
-        $statement->bindParam(":rol", $rol);
-        $statement->bindParam(":correo", $correo);
-
-        if ($statement->execute() && !empty($username) && !empty($password)) {
-            $message = "Usuario registrado";
-            echo $message;
-            header("Refresh: 3; url=./login.php");
-            exit();
-        } else {
-            $message = "Error al registrar al usuario";
-            echo $message;
-            header("Refresh: 3; url=" . $_SERVER['PHP_SELF']); 
+        if($username == "admin"){
+            $rol = 0;
+        }else{
+            $rol = 1;
         }
-    } else {
-        echo "Error al conectar a la Base de Datos";
+
+        $conn = connectDB();
+
+        if($conn){
+            $query = "INSERT INTO usuarios (user, password, rol) VALUES (:username, :password, :rol)";
+            $statement = $conn->prepare($query);
+
+            $statement->bindParam(":username", $username);
+            $statement->bindParam(":password", $password);
+            $statement->bindParam(":rol", $rol);
+
+            if($statement->execute() && !empty($username) && !empty($password)){
+                $message = "Usuario registrado";
+                echo $message;
+                header("Refresh: 3; url=./login.php");
+                exit();
+            }else{
+                $message = "Error al registrar al usuario";
+                echo $message;
+                header("Refresh: 3; url=" . $_SERVER['PHP_SELF']); 
+            }
+        }else{
+            echo "Error al conectar a la Base de Datos";
+        }
     }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,40 +49,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body class="bg-gradient-to-r from-red-300 via-red-400 to-red-500">
     <header>
-    <nav class="bg-gray-800">
-    <ul class="flex">
-        <li class="mr-6">
-            <a href="#" class="text-white">Inicio</a>
-        </li>
-        <li class="mr-6">
-            <a href="#" class="text-white">Sobre nosotros</a>
+    <nav class="bg-gray-900 py-4 flex items-center justify-between">
+    
+        <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
+    
+    <ul class="flex m-5 gap-5">
+        <li>
+            <a href="#" class="text-white hover:text-gray-300">Inicio</a>
         </li>
         <li>
-            <a href="#" class="text-white">Términos y privacidad</a>
+            <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
+        </li>
+        <li>
+            <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
         </li>
     </ul>
 </nav>
     </header>
-    <form method="post">
-        <label for="username">Nombre de usuario:</label>
-        <input type="text" name="username" id="username" required>
-        
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password" required>
-
-        <!-- Usar 'name' en lugar de 'nombre' -->
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre">
-
-        <!-- Usar 'correo' en lugar de 'email' -->
-        <label for="email">Correo electrónico:</label>
-        <input type="email" name="email" id="email">
-
-        <button type="submit">Registrarse</button>
+    <form method="post" class="flex flex-col items-center justify-center gap-6 bg-red-200 p-10 max-w-lg mx-auto rounded m-6">
+        <label for="username" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Nombre de usuario:</label>
+        <input type="text" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="username" id="username">
+        <label for="password" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Contraseña:</label>
+        <input type="password" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="password" id="password">
+        <button class='bg-red-500 hover:bg-red-600 text-white font-bold p-3 text-center rounded w-full'>Registrarse</button>
+        <a href="./login.php" class='bg-blue-500 hover:bg-blue-600 text-white text-center font-bold p-3 rounded w-full'>Iniciar sesión</a>
     </form>
-    <a href="./login.php">Iniciar sesión</a>
 </body>
 </html>
