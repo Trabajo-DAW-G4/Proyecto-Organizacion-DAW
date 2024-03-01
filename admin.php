@@ -121,12 +121,35 @@ function listProducts($conn){
     }
     ?>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <form class="flex items-center justify-center m-4" method="post" action="logout.php">
-    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-        Cerrar Sesión
-    </button>
-</form>
+    <header>
+        <nav class="bg-gray-900 py-4 flex items-center justify-between">
 
+            <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
+
+            <ul class="flex m-5 gap-5">
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Inicio</a>
+                </li>
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
+                </li>
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="flex flex-col items-center justify-center m-4">
+    <form method="post" class="w-1/3"action="logout.php">
+        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2 w-full">
+            Cerrar Sesión
+        </button>
+    </form>
+    <button class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/3' type="submit">Ver pedidos</button>
+</div>
+
+
+    
 
 <form method='post' class="flex flex-col items-center justify-center gap-6 bg-red-200 p-10 max-w-lg mx-auto rounded" enctype='multipart/form-data'>
 
