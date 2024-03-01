@@ -25,23 +25,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($user["rol"] == 0) {
                 $message = "Inicio de sesión exitoso";
-                echo $message;
                 header("Refresh: 3; url=./admin.php");
             } else {
                 $message = "Inicio de sesión exitoso";
-                echo $message;
                 header("Refresh: 3; url=./inicio.php");
             }
+
+            // No hay salida aquí
         }
 
         if (!$user) {
             $message = "Error al iniciar sesión";
-            echo $message;
             header("Refresh: 3; URL=" . $_SERVER['PHP_SELF']);
         }
-        exit();
+
+        // No hay salida aquí
     }
 }
+
+// No hay salida antes de <!DOCTYPE html>...
+
 ?>
 
 <!DOCTYPE html>
@@ -56,19 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-gradient-to-r from-red-300 via-red-400 to-red-500">
     <header>
-    <nav class="bg-gray-900 py-4 flex items-center justify-between">
-    
-        <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
-    
-    <ul class="flex m-5 gap-5">
-        <li>
-            <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
-        </li>
-        <li>
-            <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
-        </li>
-    </ul>
-</nav>
+        <nav class="bg-gray-900 py-4 flex items-center justify-between">
+            <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
+            <ul class="flex m-5 gap-5">
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
+                </li>
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <form method="post" class="flex flex-col items-center justify-center gap-6 bg-red-200 p-10 max-w-lg mx-auto rounded m-6">
         <label for="username" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Nombre de usuario:</label>
@@ -78,6 +79,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class='bg-red-500 hover:bg-red-600 text-white font-bold p-3 text-center rounded w-full'>Iniciar Sesión</button>
         <a href="./index.php" class='bg-blue-500 hover:bg-blue-600 text-white text-center font-bold p-3 rounded w-full'>Registrarse</a>
     </form>
-</main>
 </body>
 </html>
