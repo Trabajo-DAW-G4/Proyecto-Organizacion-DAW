@@ -66,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <ul class="flex m-5 gap-5">
         <li>
-            <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
+            <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
         </li>
         <li>
-            <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
+            <a href="templates/terminos.html" class="text-white hover:text-gray-300">Términos y privacidad</a>
         </li>
     </ul>
 </nav>
