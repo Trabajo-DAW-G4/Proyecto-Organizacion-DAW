@@ -5,8 +5,9 @@ include("./connectDB.php");
 $conn = connectDB();
 
 if ($conn) {
-    // Consulta SQL para seleccionar los datos de la tabla pedidos
-    $query = "SELECT order_details FROM pedidos";
+    $query = "SELECT usuarios.user, pedidos.order_details
+              FROM usuarios
+              JOIN pedidos ON usuarios.id = pedidos.customer_id";
     $statement = $conn->prepare($query);
     $statement->execute();
     $resultados = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -14,10 +15,10 @@ if ($conn) {
     echo "Conexión exitosa a la base de datos";
 
     if (count($resultados) > 0) {
-        // Mostrar los resultados en forma de tabla
         echo "<table border='1'>
                 <thead>
                     <tr>
+                        <th>Usuario</th>
                         <th>Detalles del Pedido</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@ if ($conn) {
 
         foreach ($resultados as $resultado) {
             echo "<tr>
+                    <td>{$resultado['user']}</td>
                     <td>{$resultado['order_details']}</td>
                   </tr>";
         }
@@ -33,8 +35,6 @@ if ($conn) {
     } else {
         echo "No hay datos en la tabla pedidos.";
     }
-
-    // Cierra la conexión al final del script
     $conn = null;
 } else {
     echo "Error al conectar a la base de datos";
