@@ -149,7 +149,8 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
                 Cerrar Sesión
             </button>
         </form>
-        <button class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/3' type="submit">Ver pedidos</button>
+        
+        <button class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/3' type="submit"><a href="pedidos.php">Ver pedidos</a></button>
     </div>
 
 
