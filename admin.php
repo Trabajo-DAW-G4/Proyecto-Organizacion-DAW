@@ -31,7 +31,26 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
         return $query->execute();
     }   
 }
+?>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <header>
+        <nav class="bg-gray-900 py-4 flex items-center justify-between">
 
+            <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
+
+            <ul class="flex m-5 gap-5">
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Inicio</a>
+                </li>
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
+                </li>
+                <li>
+                    <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
+                </li>
+            </ul>
+        </nav>
+    </header> <?php
 function listProducts($conn){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(isset($_POST['delete'])){
@@ -120,25 +139,6 @@ function listProducts($conn){
         $productToEdit = editProduct($conn, $id);
     }
     ?>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <header>
-        <nav class="bg-gray-900 py-4 flex items-center justify-between">
-
-            <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
-
-            <ul class="flex m-5 gap-5">
-                <li>
-                    <a href="#" class="text-white hover:text-gray-300">Inicio</a>
-                </li>
-                <li>
-                    <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
-                </li>
-                <li>
-                    <a href="#" class="text-white hover:text-gray-300">Términos y privacidad</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
     <div class="flex flex-col items-center justify-center m-4">
     <form method="post" class="w-1/3"action="logout.php">
         <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2 w-full">
@@ -178,7 +178,14 @@ function listProducts($conn){
 <input type='text' name='precio' id='precio' value='<?= ($productToEdit ? $productToEdit["precio"] : "") ?>' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
 
 <label for='ruta_foto' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Ruta de la Foto:</label>
-<input type='file' name='ruta_foto' id='ruta_foto' class="border border-gray-300 rounded-md justify-center w-full bg-white focus:outline-none focus:border-red-500 p-9">
+<div class="relative border border-gray-300 rounded-md w-full bg-white focus-within:border-red-500">
+    <input type="file" name="ruta_foto" id="ruta_foto" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer">
+    <label for="ruta_foto" class="relative block text-center py-3 cursor-pointer">
+        <span class="block mb-2">Seleccionar Archivo</span>
+        <span class="block text-gray-500">Ningún Archivo Seleccionado</span>
+    </label>
+</div>
+
 <?php if ($productToEdit && !empty($productToEdit['ruta_foto'])): ?>
     <img src="<?= $productToEdit['ruta_foto'] ?>" alt="<?= $productToEdit['nombre'] ?>" width='50' height='50'>
 <?php endif; ?>
