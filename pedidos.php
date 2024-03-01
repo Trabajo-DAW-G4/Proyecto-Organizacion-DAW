@@ -12,8 +12,6 @@ if ($conn) {
     $statement->execute();
     $resultados = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    echo "Conexión exitosa a la base de datos";
-
     if (count($resultados) > 0) {
         echo "<table border='1'>
                 <thead>
