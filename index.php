@@ -1,46 +1,52 @@
-<?php 
-    include("./connectDB.php");
-
-    session_start();
-
-    $message = null;
-
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $rol = null;
-
-        if($username == "admin"){
-            $rol = 0;
-        }else{
-            $rol = 1;
-        }
-
-        $conn = connectDB();
-
-        if($conn){
-            $query = "INSERT INTO usuarios (user, password, rol) VALUES (:username, :password, :rol)";
-            $statement = $conn->prepare($query);
-
-            $statement->bindParam(":username", $username);
-            $statement->bindParam(":password", $password);
-            $statement->bindParam(":rol", $rol);
-
-            if($statement->execute() && !empty($username) && !empty($password)){
-                $message = "Usuario registrado";
-                echo $message;
-                header("Refresh: 3; url=./login.php");
-                exit();
-            }else{
-                $message = "Error al registrar al usuario";
-                echo $message;
-                header("Refresh: 3; url=" . $_SERVER['PHP_SELF']); 
-            }
-        }else{
-            echo "Error al conectar a la Base de Datos";
-        }
+<?php
+include("./connectDB.php");
+ 
+session_start();
+ 
+$message = null;
+ 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $rol = null;
+ 
+    if ($username == "admin") {
+        $rol = 0;
+    } else {
+        $rol = 1;
     }
-
+ 
+    $name = isset($_POST["name"]) ? $_POST["name"] : "";
+   
+    $correo = isset($_POST["email"]) ? $_POST["email"] : "";
+ 
+    $conn = connectDB();
+ 
+    if ($conn) {
+        $query = "INSERT INTO usuarios (user, name, password, rol, correo)
+                  VALUES (:username, :name, :password, :rol, :correo)";
+        $statement = $conn->prepare($query);
+ 
+        $statement->bindParam(":username", $username);
+        $statement->bindParam(":name", $name);
+        $statement->bindParam(":password", $password);
+        $statement->bindParam(":rol", $rol);
+        $statement->bindParam(":correo", $correo);
+ 
+        if ($statement->execute() && !empty($username) && !empty($password)) {
+            $message = "Usuario registrado";
+            echo $message;
+            header("Refresh: 3; url=./login.php");
+            exit();
+        } else {
+            $message = "Error al registrar al usuario";
+            echo $message;
+            header("Refresh: 3; url=" . $_SERVER['PHP_SELF']);
+        }
+    } else {
+        echo "Error al conectar a la Base de Datos";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +66,6 @@
     
     <ul class="flex m-5 gap-5">
         <li>
-            <a href="#" class="text-white hover:text-gray-300">Inicio</a>
-        </li>
-        <li>
             <a href="#" class="text-white hover:text-gray-300">Sobre nosotros</a>
         </li>
         <li>
@@ -72,12 +75,17 @@
 </nav>
     </header>
     <form method="post" class="flex flex-col items-center justify-center gap-6 bg-red-200 p-10 max-w-lg mx-auto rounded m-6">
+        
+    <label for="name" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Nombre:</label>
+        <input type="text" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="name" id="name">
+        <label for="email" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Email:</label>
+        <input type="email" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="email" id="email">
         <label for="username" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Nombre de usuario:</label>
         <input type="text" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="username" id="username">
         <label for="password" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Contraseña:</label>
         <input type="password" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500" name="password" id="password">
         <button class='bg-red-500 hover:bg-red-600 text-white font-bold p-3 text-center rounded w-full'>Registrarse</button>
-        <a href="./login.php" class='bg-blue-500 hover:bg-blue-600 text-white text-center font-bold p-3 rounded w-full'>Iniciar sesión</a>
+        <a href="./login.php" class='bg-blue-500 hover:bg-blue-600 text-white text-center font-bold p-3 rounded w-full'>¿Ya tienes cuenta?</a>
     </form>
 </body>
 </html>
