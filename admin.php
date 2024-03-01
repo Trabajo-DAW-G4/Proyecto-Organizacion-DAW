@@ -182,13 +182,9 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
         <input type='text' name='precio' id='precio' value='<?= ($productToEdit ? $productToEdit["precio"] : "") ?>' class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:border-red-500">
 
         <label for='ruta_foto' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full">Ruta de la Foto:</label>
-        <div class="relative border border-gray-300 rounded-md w-full bg-white focus-within:border-red-500">
-            <input type="file" name="ruta_foto" id="ruta_foto" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer">
-            <label for="ruta_foto" class="relative block text-center py-3 cursor-pointer">
-                <span class="block mb-2">Seleccionar Archivo</span>
-                <span class="block text-gray-500">Ningún Archivo Seleccionado</span>
-            </label>
-        </div>
+        
+        <input type='file' name='ruta_foto' id='ruta_foto' class="border border-gray-300 rounded-md justify-center w-full bg-white focus:outline-none focus:border-red-500 p-9">            
+        
 
         <?php if ($productToEdit && !empty($productToEdit['ruta_foto'])) : ?>
             <img src="<?= $productToEdit['ruta_foto'] ?>" alt="<?= $productToEdit['nombre'] ?>" width='50' height='50'>
@@ -197,13 +193,6 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
         <input type='hidden' name='product_id' value='<?= ($productToEdit ? $productToEdit['id'] : "") ?>'>
         <button type='submit' name='<?= ($productToEdit ? "update" : "insert") ?>' id='insert-btn' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"><?= ($productToEdit ? "Editar" : "Insertar") ?> Producto</button>
     </form>
-<<<<<<< HEAD
-    <button class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/3' type="submit"><a href="./pedidos.php">Ver pedidos</a></button>
-</div>
-=======
->>>>>>> de5a8ddb46a359b4d2af8b9dea34e59c80da93af
-
-
     <table border="1" class="w-[] mx-auto border-collapse table-auto m-7">
         <thead class="bg-red-500 hover:bg-red-600 text-white">
             <tr>
