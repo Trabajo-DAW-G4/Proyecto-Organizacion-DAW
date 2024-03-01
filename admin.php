@@ -197,6 +197,11 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
         <input type='hidden' name='product_id' value='<?= ($productToEdit ? $productToEdit['id'] : "") ?>'>
         <button type='submit' name='<?= ($productToEdit ? "update" : "insert") ?>' id='insert-btn' class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"><?= ($productToEdit ? "Editar" : "Insertar") ?> Producto</button>
     </form>
+<<<<<<< HEAD
+    <button class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-1/3' type="submit"><a href="./pedidos.php">Ver pedidos</a></button>
+</div>
+=======
+>>>>>>> de5a8ddb46a359b4d2af8b9dea34e59c80da93af
 
 
     <table border="1" class="w-[] mx-auto border-collapse table-auto m-7">
