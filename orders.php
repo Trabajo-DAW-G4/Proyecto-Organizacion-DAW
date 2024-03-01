@@ -1,23 +1,23 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <header>
-        <nav class="bg-gray-900 py-4 flex items-center justify-between">
+    <nav class="bg-gray-900 py-4 flex items-center justify-between">
 
-            <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
+        <img src="./assets/J3AT-removebg-preview.png" alt="Logo" class="h-16 ml-6">
 
-            <ul class="flex m-5 gap-5">
-                <li>
-                    <a href="inicio.php" class="text-white hover:text-gray-300" >Inicio</a>
-                </li>
-                <li>
-                    <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
-                </li>
-                <li>
-                    <a href="templates/terminos.html" class="text-white hover:text-gray-300">Términos y privacidad</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <?php
+        <ul class="flex m-5 gap-5">
+            <li>
+                <a href="inicio.php" class="text-white hover:text-gray-300">Inicio</a>
+            </li>
+            <li>
+                <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
+            </li>
+            <li>
+                <a href="templates/terminos.html" class="text-white hover:text-gray-300">Términos y privacidad</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<?php
 include("./connectDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['quantity'])) {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['quantity'])) {
                 $totalToPay += $subtotal;
             }
         }
-        
+
         if (!empty($orderDetails)) {
             $orderDetailString = json_encode($orderDetails);
 
@@ -88,6 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['quantity'])) {
         } else {
             echo "<p class='text-center mt-8'>No se encontraron resultados</p>";
         }
+        $query_insert_order = "INSERT INTO pedidos (customer_id, order_date, order_details, total) VALUES (:customer_id, :order_date, :order_details, :total)";
+        $statement_insert_order = $conn->prepare($query_insert_order);
+        $statement_insert_order->bindParam(':customer_id', $customer_id);
+        $statement_insert_order->bindParam(':order_date', $order_date);
+        $statement_insert_order->bindParam(':order_details', $orderDetailString);
+        $statement_insert_order->bindParam(':total', $totalToPay);
+        $statement_insert_order->execute();
 
         $conn = null;
     } else {
