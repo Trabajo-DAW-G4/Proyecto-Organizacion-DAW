@@ -36,6 +36,7 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
 }
 ?>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <script src="./scripts/darkmode.js"></script>
 <header>
     <nav class="bg-gray-900 py-4 flex items-center justify-between">
