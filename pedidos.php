@@ -22,6 +22,7 @@ if ($conn) {
             <title>Tus Pedidos</title>
             <!-- Agregar CDN de Tailwind CSS -->
             <link href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css' rel='stylesheet'>
+            <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
         </head>
         <body>
             <div class='container mx-auto'>
