@@ -52,6 +52,79 @@ if ($conn) {
         <?php endforeach; ?>
     </div>
 
+    <script>
+        // Obtener todas las imágenes con la clase "object-cover"
+        var images = document.querySelectorAll('.object-cover');
+
+        // Agregar un evento de clic a cada imagen
+        images.forEach(function(image) {
+            // Cambiar el cursor al pasar sobre la imagen
+            image.style.cursor = "pointer";
+
+            image.addEventListener('click', function() {
+                // Crear el modal
+                var modal = document.createElement('div');
+                modal.style.position = "fixed";
+                modal.style.zIndex = "999";
+                modal.style.left = "0";
+                modal.style.top = "0";
+                modal.style.width = "100%";
+                modal.style.height = "100%";
+                modal.style.overflow = "auto";
+                modal.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+                modal.style.display = "flex";
+                modal.style.justifyContent = "center";
+                modal.style.alignItems = "center";
+
+                // Crear la imagen ampliada
+                var modalImg = document.createElement('img');
+                modalImg.src = this.src;
+                modalImg.style.width = "80%";
+                modalImg.style.maxWidth = "700px";
+                modalImg.style.height = "auto";
+
+                // Agregar la imagen ampliada al modal
+                modal.appendChild(modalImg);
+
+                // Agregar el modal al body
+                document.body.appendChild(modal);
+
+                // Ocultar el scroll del cuerpo
+                document.body.style.overflow = 'hidden';
+
+                // Cuando el usuario hace clic fuera de la imagen, cerrar el modal
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                        // Restaurar el scroll del cuerpo
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                // Cuando el usuario hace clic en la "x", cerrar la imagen ampliada
+                var close = document.createElement('span');
+                close.innerHTML = "&times;";
+                close.style.position = "absolute";
+                close.style.top = "15px";
+                close.style.right = "35px";
+                close.style.color = "#f1f1f1";
+                close.style.fontSize = "40px";
+                close.style.fontWeight = "bold";
+                close.style.transition = "0.3s";
+                close.style.cursor = "pointer";
+
+                close.addEventListener('click', function() {
+                    modal.style.display = "none";
+                    // Restaurar el scroll del cuerpo
+                    document.body.style.overflow = 'auto';
+                });
+
+                // Agregar la "x" al modal
+                modal.appendChild(close);
+            });
+        });
+    </script>
+
     <?php if (count($productos_ropa) > 0) : ?>
         <form method="post" action="orders.php" class="mt-8">
             <table class="w-full border-collapse border border-gray-300">
