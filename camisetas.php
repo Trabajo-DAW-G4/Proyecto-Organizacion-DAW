@@ -90,10 +90,15 @@ if ($conn) {
                 // Agregar el modal al body
                 document.body.appendChild(modal);
 
+                // Ocultar el scroll del cuerpo
+                document.body.style.overflow = 'hidden';
+
                 // Cuando el usuario hace clic fuera de la imagen, cerrar el modal
                 modal.addEventListener('click', function(event) {
                     if (event.target === modal) {
                         modal.style.display = "none";
+                        // Restaurar el scroll del cuerpo
+                        document.body.style.overflow = 'auto';
                     }
                 });
 
@@ -111,6 +116,8 @@ if ($conn) {
 
                 close.addEventListener('click', function() {
                     modal.style.display = "none";
+                    // Restaurar el scroll del cuerpo
+                    document.body.style.overflow = 'auto';
                 });
 
                 // Agregar la "x" al modal
@@ -118,7 +125,7 @@ if ($conn) {
             });
         });
     </script>
-
+    
     <?php if (count($productos_ropa) > 0) : ?>
         <form method="post" action="orders.php" class="mt-8">
             <table class="w-full border-collapse border border-gray-300">
