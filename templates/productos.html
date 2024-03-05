@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Tienda de Ropa</title>
+    <link rel="stylesheet" href="../styles/contacto.css">
+</head>
+<body>
+
+    <header>
+        <h1>J3AC | Tienda de Ropa</h1>
+        <nav>
+            <a href="../index.html">Inicio</a> |
+            <a href="sobreNosotros.html">Sobre Nosotros</a>
+        </nav>
+    </header>
+
+    <h1>Contacto</h1>
+    <form action="/contacto" method="post">
+        <label for="producto">Seleccione el tipo de producto:</label>
+        <select id="producto" name="producto" required>
+            <option value="" disabled selected>Seleccione...</option>
+            <option value="camiseta">Camiseta</option>
+            <option value="sudadera">Sudadera</option>
+            <option value="pantalon">Pantalón</option>
+        </select>
+
+        <div id="formularioProducto" style="display: none;">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="articulo">Artículo:</label>
+            <input type="text" id="articulo" name="articulo" required>
+
+            <label for="material">Material:</label>
+            <input type="text" id="material" name="material" required>
+
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
+
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" required>
+
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" required>
+        </div>
+
+        <br>
+
+        <p>Al enviar este formulario, confirmo que he leído y acepto la <a href="privacyTerms.html">Política de Privacidad</a>.</p>
+
+        <br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        document.getElementById("producto").addEventListener("change", function() {
+            let productoSeleccionado = this.value;
+            let formularioProducto = document.getElementById("formularioProducto");
+
+            if (productoSeleccionado === "camiseta" || productoSeleccionado === "sudadera" || productoSeleccionado === "pantalon") {
+                formularioProducto.style.display = "block";
+            } else {
+                formularioProducto.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

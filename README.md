@@ -4,12 +4,12 @@
 
 ## Páginas Principales
 
-- [index.html]
-- [sobreNosotros.html]
-- [contacto.html]
-- [productos.php]
-- [register.html]
-- [login.html]
+- [index.php]
+- [admin.php]
+- [connectDB.php]
+- [login.php]
+- [logout.php]
+- [orders.php]
 
 ## Subpáginas importantes
 
