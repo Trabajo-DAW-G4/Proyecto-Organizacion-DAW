@@ -16,6 +16,7 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script src="./scripts/darkmode.js"></script>
 </head>
 
