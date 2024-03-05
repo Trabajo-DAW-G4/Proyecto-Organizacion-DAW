@@ -31,7 +31,7 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
                     <a href="inicio.php" class="text-white hover:text-gray-300">Inicio</a>
                 </li>
                 <li>
-                <button id="darkModeButton" class="flex items-center justify-center text-white rounded-md hover:text-gray-300">Dark Mode</button>
+                <button id="darkModeButton"class="flex items-center justify-center text-white rounded-md hover:text-gray-300">Dark Mode</button>
                 </li>
                 <li>
                     <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
