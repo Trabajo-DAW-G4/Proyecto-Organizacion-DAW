@@ -36,7 +36,7 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
 }
 ?>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<script src="./scripts/darkmode.js"></script>
 <header>
     <nav class="bg-gray-900 py-4 flex items-center justify-between">
 
@@ -45,6 +45,9 @@ function insertProduct($conn, $category, $name, $talla, $stock, $precio, $ruta_f
         <ul class="flex m-5 gap-5">
             <li>
                 <a href="inicio.php" class="text-white hover:text-gray-300">Inicio</a>
+            </li>
+            <li>
+            <button id="darkModeButton" class="flex items-center justify-center text-white rounded-md hover:text-gray-300">Dark Mode</button>
             </li>
             <li>
                 <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
