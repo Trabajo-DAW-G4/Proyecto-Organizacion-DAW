@@ -11,7 +11,7 @@ if (empty($user)) {
 }
 
 $conn = connectDB();
-
+ 
 if ($conn) {
     $query = "SELECT * FROM productos_ropa ORDER BY nombre";
     $statement = $conn->prepare($query);
