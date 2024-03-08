@@ -16,7 +16,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="./scripts/darkmode.js"></script>
 </head>
 
 <body class="bg-gradient-to-r from-gray-100 to-gray-200">
@@ -28,6 +29,9 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
             <ul class="flex m-5 gap-5">
                 <li>
                     <a href="inicio.php" class="text-white hover:text-gray-300">Inicio</a>
+                </li>
+                <li>
+                <button id="darkModeButton"class="flex items-center justify-center text-white rounded-md hover:text-gray-300">Dark Mode</button>
                 </li>
                 <li>
                     <a href="templates/sobreNosotros.html" class="text-white hover:text-gray-300">Sobre nosotros</a>
