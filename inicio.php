@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
-    header("Location: ./login.php"); // Redirigir a la página de inicio de sesión si no ha iniciado sesión
+    header("Location: ./login.php");
     exit();
 }
 
@@ -45,11 +45,42 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["user"])) {
         <button onclick="location.href='./pantalones.php'" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded w-full mb-2">Pantalones</button>
         <button onclick="location.href='./sudaderas.php'" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded w-full mb-2">Sudaderas</button>
         <a href="./logout.php" class='bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 text-center rounded w-full'>Cerrar Sesión</a>
+    </div>
+    <div class="flex">
+        <div class="relative slide bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('/assets/sudaderaCapucha.jpg');">
+            <h3 class="absolute bottom-2 left-2 text-white text-lg opacity-0 transition duration-300 ease-in-out text-shadow">Apple Watch</h3>
+            <button class="absolute bottom-2 right-2 opacity-0 transition duration-300 ease-in-out">
+                <!-- Agrega tu botón aquí -->
+            </button>
+        </div>
+        <div class="relative slide bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('/assets/sudaderaCapucha.jpg')">
+            <h3 class="absolute bottom-2 left-2 text-white text-lg opacity-0 transition duration-300 ease-in-out text-shadow">Moviles</h3>
+            <button class="absolute bottom-2 right-2 opacity-0 transition duration-300 ease-in-out">
+                <!-- Agrega tu botón aquí -->
+            </button>
+        </div>
+        <div class="relative slide bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('/assets/sudaderaCapucha.jpg')">
+            <h3 class="absolute bottom-2 left-2 text-white text-lg opacity-0 transition duration-300 ease-in-out text-shadow">MacBook</h3>
+            <button class="absolute bottom-2 right-2 opacity-0 transition duration-300 ease-in-out">
+                <!-- Agrega tu botón aquí -->
+            </button>
+        </div>
+        <div class="relative slide bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('/assets/sudaderaCapucha.jpg')">
+            <h3 class="absolute bottom-2 left-2 text-white text-lg opacity-0 transition duration-300 ease-in-out text-shadow">Ipad</h3>
+            <button class="absolute bottom-2 right-2 opacity-0 transition duration-300 ease-in-out">
+                <!-- Agrega tu botón aquí -->
+            </button>
+        </div>
+        <div class="relative slide bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('/assets/sudaderaCapucha.jpg')">
+            <h3 class="absolute bottom-2 left-2 text-white text-lg opacity-0 transition duration-300 ease-in-out text-shadow">Airpods</h3>
+            <button class="absolute bottom-2 right-2 opacity-0 transition duration-300 ease-in-out">
+                <!-- Agrega tu botón aquí -->
+            </button>
+        </div>
+    </div>
 
 
-
-
-
+    <script src="slides.js"></script>
 </body>
 
 </html>
