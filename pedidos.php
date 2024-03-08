@@ -33,7 +33,7 @@ if ($conn) {
     </header>
     <?php
     if (count($resultados) > 0) {
-        echo "<table class='m-4 text-center w-full border-collapse border border-gray-300'>
+        echo "<table class='mt-5 text-center w-full border-collapse border border-gray-300'>
                 <thead>
                     <tr class='bg-gray-200'>
                         <th class='px-6 py-4'>Usuario</th>
